@@ -1,5 +1,4 @@
-# actions/computer_settings.py
-# MARK XXV — Computer Settings & UI Controls
+# Computer Settings & UI Controls
 #
 # Kullanıcı "sesi aç", "uygulamayı kapat", "tam ekran yap", "şunu yaz" gibi
 # bilgisayar kontrol komutları verdiğinde bu dosya devreye girer.

@@ -14,7 +14,7 @@ BASE_DIR        = get_base_dir()
 API_CONFIG_PATH = BASE_DIR / "config" / "api_keys.json"
 
 
-PLANNER_PROMPT = """You are the planning module of MARK XXV, a personal AI assistant.
+PLANNER_PROMPT = """You are the planning module of BRIGHTOS, a personal AI assistant.
 Your job: break any user goal into a sequence of steps using ONLY the tools listed below.
 
 ABSOLUTE RULES:
