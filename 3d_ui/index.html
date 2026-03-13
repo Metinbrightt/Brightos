@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIGHTOS - Advanced AI Interface</title>
+    <style>
+        :root {
+            --primary: #00d4ff;
+            --secondary: #007a99;
+            --accent: #ff6600;
+            --bg: #000;
+            --panel: rgba(1, 12, 16, 0.85);
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            color: var(--primary);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        #dashboard {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: radial-gradient(circle at center, #001520 0%, #000 70%);
+            position: relative;
+        }
+
+        /* --- BACKGROUND GRID --- */
+        #grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: linear-gradient(rgba(0, 212, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 212, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+        }
+
+        /* --- HEADER --- */
+        header {
+            padding: 20px 40px;
+            border-bottom: 2px solid var(--secondary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(to bottom, rgba(0, 21, 32, 0.9), transparent);
+            z-index: 10;
+        }
+
+        .title-group h1 {
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 8px;
+            font-weight: 300;
+            text-shadow: 0 0 15px var(--primary);
+        }
+
+        .status-badge {
+            border: 1px solid var(--primary);
+            padding: 5px 15px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+            animation: statusPulse 2s infinite alternate;
+        }
+
+        @keyframes statusPulse {
+            from {
+                opacity: 0.6;
+            }
+
+            to {
+                opacity: 1;
+                text-shadow: 0 0 15px var(--primary);
+            }
+        }
+
+        /* --- CENTRAL CORE --- */
+        #core-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .core-circle {
+            position: absolute;
+            border: 2px solid var(--secondary);
+            border-radius: 50%;
+            opacity: 0.4;
+        }
+
+        .ring1 {
+            width: 400px;
+            height: 400px;
+            border-style: dashed;
+            animation: spin 20s linear infinite;
+        }
+
+        .ring2 {
+            width: 450px;
+            height: 450px;
+            border-width: 1px;
+            border-style: double;
+            animation: spinReverse 15s linear infinite;
+        }
+
+        .ring3 {
+            width: 350px;
+            height: 350px;
+            border-top-color: var(--primary);
+            border-width: 4px;
+            animation: spin 10s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spinReverse {
+            from {
+                transform: rotate(360deg);
+            }
+
+            to {
+                transform: rotate(0deg);
+            }
+        }
+
+        #main-eye {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 50px var(--secondary);
+            z-index: 5;
+            transition: all 0.3s ease;
+        }
+
+        #main-eye.speaking {
+            transform: scale(1.15);
+            box-shadow: 0 0 80px var(--primary);
+        }
+
+        /* --- DATA PANELS --- */
+        .panel {
+            position: absolute;
+            background: var(--panel);
+            border: 1px solid var(--secondary);
+            padding: 15px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+        }
+
+        #log-panel {
+            bottom: 40px;
+            left: 40px;
+            width: 450px;
+            height: 200px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column-reverse;
+        }
+
+        #stats-panel {
+            top: 100px;
+            right: 40px;
+            width: 250px;
+        }
+
+        .log-entry {
+            margin-bottom: 8px;
+            border-left: 2px solid var(--primary);
+            padding-left: 10px;
+        }
+
+        .log-entry.brightos {
+            color: var(--primary);
+        }
+
+        .log-entry.you {
+            color: #fff;
+            border-color: #fff;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 10px 40px;
+            font-size: 10px;
+            color: var(--secondary);
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--secondary);
+        }
+
+        /* --- SOUNDBAR --- */
+        #visualizer {
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            height: 50px;
+        }
+
+        .bar {
+            width: 8px;
+            background: var(--secondary);
+            transition: height 0.1s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="dashboard">
+        <div id="grid"></div>
+
+        <header>
+            <div class="title-group">
+                <h1>BRIGHTOS</h1>
+                <div style="font-size: 10px; color: var(--secondary);">BRIGHTOS NEURAL NET INTERFACE</div>
+            </div>
+            <div id="status" class="status-badge">SYSTEM ONLINE</div>
+        </header>
+
+        <main id="core-container">
+            <div class="core-circle ring1"></div>
+            <div class="core-circle ring2"></div>
+            <div class="core-circle ring3"></div>
+            <div id="main-eye">
+                <svg width="100" height="100" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="var(--primary)" stroke-width="2"
+                        stroke-dasharray="10 5" />
+                    <text x="50" y="55" text-anchor="middle" fill="var(--primary)" font-size="12"
+                        font-weight="bold">B-OS</text>
+                </svg>
+            </div>
+
+            <!-- Side Visualizations -->
+            <div id="stats-panel" class="panel">
+                <div style="color: var(--primary); margin-bottom: 15px; font-weight: bold; border-bottom: 1px solid;">
+                    SYSTEM STATS</div>
+                <div>CPU OVERLOAD: 4.2%</div>
+                <div>NEURAL LATENCY: 12ms</div>
+                <div>MEMORY SYNC: 98%</div>
+                <div id="visualizer" style="margin-top: 20px;">
+                    <!-- Visualizer bars generated by JS -->
+                </div>
+            </div>
+        </main>
+
+        <div id="log-panel" class="panel">
+            <!-- Logs will appear here -->
+        </div>
+
+        <footer>
+            <span>Brightos Industries &copy; 2026</span>
+            <span>CLASSIFIED ACCESS ONLY</span>
+            <span id="clock">00:00:00</span>
+        </footer>
+    </div>
+
+    <script>
+        const statusEl = document.getElementById('status');
+        const logPanel = document.getElementById('log-panel');
+        const eye = document.getElementById('main-eye');
+        const visualizer = document.getElementById('visualizer');
+
+        // Setup visualizer bars
+        for (let i = 0; i < 15; i++) {
+            const bar = document.createElement('div');
+            bar.className = 'bar';
+            bar.style.height = '5px';
+            visualizer.appendChild(bar);
+        }
+
+        function addLog(msg, type = "brightos") {
+            const div = document.createElement('div');
+            div.className = `log-entry ${type}`;
+            div.innerHTML = `<span style="opacity: 0.5;">[${new Date().toLocaleTimeString()}]</span> ${msg}`;
+            logPanel.prepend(div);
+        }
+
+        // Bridge from Python
+        window.py_speak = (text) => {
+            eye.classList.add('speaking');
+            addLog(text, "brightos");
+            statusEl.innerText = "SPEAKING";
+
+            // Simulation of visualizer animation
+            const bars = document.querySelectorAll('.bar');
+            const intrvl = setInterval(() => {
+                bars.forEach(b => b.style.height = Math.random() * 40 + 5 + 'px');
+            }, 100);
+
+            setTimeout(() => {
+                eye.classList.remove('speaking');
+                statusEl.innerText = "ONLINE";
+                clearInterval(intrvl);
+                bars.forEach(b => b.style.height = '5px');
+            }, 5000);
+        };
+
+        window.py_setStatus = (status) => {
+            statusEl.innerText = status.toUpperCase();
+            if (status === "PROCESSING") {
+                eye.style.boxShadow = "0 0 100px #ff6600";
+                addLog("System thinking...", "sys");
+            } else {
+                eye.style.boxShadow = "0 0 50px var(--secondary)";
+            }
+        };
+
+        // Clock
+        setInterval(() => {
+            document.getElementById('clock').innerText = new Date().toLocaleTimeString();
+        }, 1000);
+
+        addLog("Brightos systems initialized.");
+        addLog("Neural link stable.");
+    </script>
+</body>
+
+</html>
