@@ -21,8 +21,8 @@ BASE_DIR   = get_base_dir()
 CONFIG_DIR = BASE_DIR / "config"
 API_FILE   = CONFIG_DIR / "api_keys.json"
 
-SYSTEM_NAME = "BRIGHTOS"
-MODEL_BADGE = "BRIGHTOS"
+SYSTEM_NAME = "JARVIS"
+MODEL_BADGE = "BrightOS Jarvis Assistant"
 
 C_BG     = "#000000"
 C_PRI    = "#00d4ff"
@@ -40,7 +40,7 @@ C_RED    = "#ff3333"
 class BrightosUI:
     def __init__(self, face_path, size=None):
         self.root = tk.Tk()
-        self.root.title("BRIGHTOS — V1.0")
+        self.root.title("BrightOS Jarvis Assistant — V1.0")
         self.root.resizable(False, False)
 
         sw = self.root.winfo_screenwidth()
@@ -258,9 +258,9 @@ class BrightosUI:
         HDR = 62
         c.create_rectangle(0, 0, W, HDR, fill="#00080d", outline="")
         c.create_line(0, HDR, W, HDR, fill=C_MID, width=1)
-        c.create_text(W // 2, 22, text=SYSTEM_NAME,
+        c.create_text(W // 2, 22, text="JARVIS",
                       fill=C_PRI, font=("Courier", 18, "bold"))
-        c.create_text(W // 2, 44, text="Just A Rather Very Intelligent System",
+        c.create_text(W // 2, 44, text="BrightOS Jarvis Assistant — Local Neural Link",
                       fill=C_MID, font=("Courier", 9))
         c.create_text(16, 31,    text=MODEL_BADGE,
                       fill=C_DIM, font=("Courier", 9), anchor="w")

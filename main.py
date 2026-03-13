@@ -63,7 +63,7 @@ def _load_system_prompt() -> str:
         return PROMPT_PATH.read_text(encoding="utf-8")
     except Exception:
         return (
-            "You are BRIGHTOS, a sharp and efficient AI assistant. "
+            "You are BrightOS Jarvis Assistant (JARVIS), a sharp and efficient AI assistant. "
             "Be concise, direct, and always use the provided tools to complete tasks. "
             "Never simulate or guess results — always call the appropriate tool."
         )

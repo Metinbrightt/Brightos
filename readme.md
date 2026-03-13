@@ -1,14 +1,14 @@
-# 🤖 BRIGHTOS — Kişisel Yapay Zeka Asistanı
+# 🤖 BrightOS Jarvis Assistant
 
 **Tanıtım Videosu**: https://www.instagram.com/reel/DV1UjTODUvr/
 
 ### Yeni Nesil Sesli Yapay Zeka — Gücü Sizin Elinizde
 
-Brightos, Windows bilgisayarınızı duyabilen, görebilen, anlayabilen ve kontrol edebilen gerçek zamanlı bir sesli yapay zeka asistanıdır. Yerel olarak çalışır ve akıllı otomasyon için tasarlanmıştır.
+BrightOS Jarvis Assistant, Windows bilgisayarınızı duyabilen, görebilen, anlayabilen ve kontrol edebilen gerçek zamanlı bir sesli yapay zeka asistanıdır. Yerel olarak çalışır ve akıllı otomasyon için tasarlanmıştır.
 
 ## ✨ Genel Bakış
 
-**BRIGHTOS**, bilgisayarınızı etkileşimli ve akıllı bir sisteme dönüştürmek için tasarlanmış gelişmiş bir sesli asistan projesidir. Doğal dilde konuşun; sizi dinler, bağlamı anlar, insansı bir sesle yanıt verir ve sisteminizdeki görevleri otomatik olarak yürütür.
+**BrightOS Jarvis Assistant**, bilgisayarınızı etkileşimli ve akıllı bir sisteme dönüştürmek için tasarlanmış gelişmiş bir sesli asistan projesidir. Doğal dilde konuşun; sizi dinler, bağlamı anlar, insansı bir sesle yanıt verir ve sisteminizdeki görevleri otomatik olarak yürütür.
 
 Hız, özerklik ve gerçek dünya kullanımı için optimize edilmiştir.
 
